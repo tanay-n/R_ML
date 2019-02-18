@@ -102,12 +102,12 @@ control <- trainControl(method="cv", number=10)
 metric <- "Accuracy"
 
 
-# a) linear algorithms
+# linear algorithms
 set.seed(42)
 fit.lda <- train(Species~., data=train_set, method="lda", metric=metric, trControl=control)
 
 
-# b) nonlinear algorithms
+# nonlinear algorithms
 # CART
 set.seed(42)
 fit.cart <- train(Species~., data=train_set, method="rpart", metric=metric, trControl=control)
@@ -116,7 +116,7 @@ set.seed(42)
 fit.knn <- train(Species~., data=train_set, method="knn", metric=metric, trControl=control)
 
 
-# c) advanced algorithms
+# advanced algorithms
 # SVM
 set.seed(42)
 fit.svm <- train(Species~., data=train_set, method="svmRadial", metric=metric, trControl=control)
@@ -141,8 +141,11 @@ print(fit.lda)
 ##################################################################################################################
 ### RUN PREDICTIONS ###
 
+
 # estimate skill of LDA on the validation dataset
 prediction_lda <- predict(fit.lda, test_set)
-prediction_knn <- predict(fit.knn, test_set)
 confusionMatrix(prediction_lda, test_set$Species)
-confusionMatrix(prediction_knn, test_set$Species)
+
+
+## tutorial <- https://machinelearningmastery.com/machine-learning-in-r-step-by-step/ ##
+
